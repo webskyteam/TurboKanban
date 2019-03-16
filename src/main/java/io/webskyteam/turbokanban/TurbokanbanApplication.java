@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TurbokanbanApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(TurbokanbanApplication.class, args);
 	}
 
