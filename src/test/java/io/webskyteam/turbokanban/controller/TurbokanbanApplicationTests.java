@@ -1,4 +1,4 @@
-package io.webskyteam.turbokanban;
+package io.webskyteam.turbokanban.controller;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
