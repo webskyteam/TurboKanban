@@ -10,7 +10,7 @@ public class Task {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "process_status", length = 20)
     private String processStatus;
@@ -30,7 +30,7 @@ public class Task {
         this.description = description;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 

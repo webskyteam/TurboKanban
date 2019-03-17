@@ -20,5 +20,9 @@ public class TaskService {
     public List<Task> getTasks() {
         return taskRepository.findAll();
     }
+
+    public List<Task> getTaskToDo(String processStatus){
+        return taskRepository.findAll();
+    }
 }
 
