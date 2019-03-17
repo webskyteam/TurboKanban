@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS `task_tracker`;
-USE `task_tracker`;
-
 DROP TABLE IF EXISTS `task`;
 CREATE TABLE `task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -8,7 +5,7 @@ CREATE TABLE `task` (
   `task_name` varchar(45) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+);
 
 INSERT INTO `task` VALUES
 	  (1, 'todo', 'Gathering informations', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
