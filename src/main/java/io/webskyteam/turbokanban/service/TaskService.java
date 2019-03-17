@@ -1,6 +1,7 @@
 package io.webskyteam.turbokanban.service;
 import io.webskyteam.turbokanban.dao.TaskDAO;
 import io.webskyteam.turbokanban.entity.Task;
+import io.webskyteam.turbokanban.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,14 +10,15 @@ import java.util.List;
 @Service
 public class TaskService {
 
-    private final TaskDAO taskDAO;
+    private TaskRepository taskRepository;
 
     @Autowired
-    public TaskService(TaskDAO taskDAO) {
-        this.taskDAO = taskDAO;
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
     }
 
-    public List<Task> getTask() {
-        return null;
+    public List<Task> getTasks() {
+        return taskRepository.findAll();
     }
 }
+
