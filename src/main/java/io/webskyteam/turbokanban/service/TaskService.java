@@ -22,7 +22,7 @@ public class TaskService {
     }
 
     public List<Task> getTaskToDo(String processStatus){
-        return taskRepository.findAll();
+        return taskRepository.findByProcessStatus(processStatus);
     }
 }
 

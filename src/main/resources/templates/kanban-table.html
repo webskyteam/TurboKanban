@@ -5,10 +5,15 @@
 
 
   <meta charset="UTF-8"/>
-  <title>Title</title>
 </head>
 <body>
 <span>kanban table !!!</span>
-<span th:text="${tasks.size()}" />
+<span th:text="${tasksTODO}" />
+<div th:each="task : ${tasksTODO}">
+  <h2 th:text="${task.getProcessStatus()}">Status zadania</h2>
+  <h2 th:text="${task.getTaskName()}">Nazwa zadania</h2>
+  <h2 th:text="${task.getDescription()}">Opis zadania</h2>
+
+</div>
 </body>
 </html>
