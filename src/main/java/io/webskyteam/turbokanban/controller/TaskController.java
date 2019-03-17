@@ -36,7 +36,7 @@ public class TaskController {
         tasksBystatus.put("todo", tasksToDo);
         tasksBystatus.put("done", tasksDone);
         tasksBystatus.put("doing", tasksDoing);
-        tasksBystatus.put("archive",tasksArchive);
+        tasksBystatus.put("archive", tasksArchive);
 
 
         for (Task task : tasks) {
@@ -46,19 +46,19 @@ public class TaskController {
             if (task.getProcessStatus().equals("done")) {
                 tasksDone.add(task);
             }
-            if(task.getProcessStatus().equals("doing")) {
+            if (task.getProcessStatus().equals("doing")) {
                 tasksDoing.add(task);
-            }
-            else {
+            } else {
                 tasksArchive.add(task);
             }
         }
 
-//        List<Task> tasks = taskService.getTaskToDo("todo");
-
-//            model.addAttribute("tasks", tasks);
-            model.addAttribute("tasksTODO",tasksBystatus.get("todo"));
-            return "kanban-table";
-        }
+//
+        model.addAttribute("tasksTODO", tasksBystatus.get("todo"));
+        model.addAttribute("tasksDOING", tasksBystatus.get("doing"));
+        model.addAttribute("tasksDONE", tasksBystatus.get("done"));
+        model.addAttribute("tasksARCHIVE", tasksBystatus.get("archive"));
+        return "kanban-table";
     }
+}
 

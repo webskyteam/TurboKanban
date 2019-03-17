@@ -7,12 +7,37 @@
   <meta charset="UTF-8"/>
 </head>
 <body>
-<span>kanban table !!!</span>
-<span th:text="${tasksTODO}" />
+<span>KANBAN TABLE</span>
+<span>TASKS TODO</span>
 <div th:each="task : ${tasksTODO}">
-  <h2 th:text="${task.getProcessStatus()}">Status zadania</h2>
-  <h2 th:text="${task.getTaskName()}">Nazwa zadania</h2>
-  <h2 th:text="${task.getDescription()}">Opis zadania</h2>
+  <h5 th:text="${task.getProcessStatus()}">Status zadania</h5>
+  <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
+  <h5 th:text="${task.getDescription()}">Opis zadania</h5>
+
+</div>
+
+<span>TASKS DOING</span>
+<div th:each="task : ${tasksDOING}">
+  <h5 th:text="${task.getProcessStatus()}">Status zadania</h5>
+  <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
+  <h5 th:text="${task.getDescription()}">Opis zadania</h5>
+
+</div>
+
+
+<span>TASKS DONE</span>
+<div th:each="task : ${tasksDONE}">
+  <h5 th:text="${task.getProcessStatus()}">Status zadania</h5>
+  <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
+  <h5 th:text="${task.getDescription()}">Opis zadania</h5>
+
+</div>
+
+<span>TASKS ARCHIVE</span>
+<div th:each="task : ${tasksARCHIVE}">
+  <h5 th:text="${task.getProcessStatus()}">Status zadania</h5>
+  <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
+  <h5 th:text="${task.getDescription()}">Opis zadania</h5>
 
 </div>
 </body>
