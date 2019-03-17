@@ -1,24 +1,24 @@
 package io.webskyteam.turbokanban.entity;
 
 
-//import javax.persistence.*;
-//
-//@Entity
-//@Table
+import javax.persistence.*;
+
+@Entity
+@Table(name = "task")
 public class Task {
 
-//    @Id
-//    @Column(name = "id")
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-//    @Column(name = "process_status", length = 20)
+    @Column(name = "process_status", length = 20)
     private String processStatus;
 
-//    @Column(name = "task_name", length = 40)
+    @Column(name = "task_name", length = 40)
     private String taskName;
 
-//    @Column(name = "description", length = 4000)
+    @Column(name = "description", length = 4000)
     private String description;
 
     public Task() {
