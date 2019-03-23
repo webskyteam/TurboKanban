@@ -1,16 +1,18 @@
 package io.webskyteam.turbokanban.controller;
 
-import io.webskyteam.turbokanban.entity.Task;
+import io.webskyteam.turbokanban.dto.KanbanBoard;
+import io.webskyteam.turbokanban.dto.TaskDTO;
+import io.webskyteam.turbokanban.dto.TaskStatus;
 import io.webskyteam.turbokanban.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class TaskController {
@@ -22,43 +24,43 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-
     @RequestMapping("/table")
     public String listTasks(Model model) {
-        List<Task> tasks = taskService.getTasks();
 
-        List<Task> tasksToDo = new ArrayList<>();
-        List<Task> tasksDoing = new ArrayList<>();
-        List<Task> tasksDone = new ArrayList<>();
-        List<Task> tasksArchive = new ArrayList<>();
+        KanbanBoard kanbanTasks = taskService.getTasks();
 
-        Map<String, List<Task>> tasksBystatus = new HashMap<>();
-        tasksBystatus.put("todo", tasksToDo);
-        tasksBystatus.put("done", tasksDone);
-        tasksBystatus.put("doing", tasksDoing);
-        tasksBystatus.put("archive", tasksArchive);
+        List<TaskDTO> tasksTodo = kanbanTasks.getTasks(TaskStatus.TODO);
+        model.addAttribute("tasksTODO", tasksTodo);
 
+        List<TaskDTO> tasksInProgress = kanbanTasks.getTasks(TaskStatus.IN_PROGRESS);
+        model.addAttribute("tasksDOING", tasksInProgress);
 
-        for (Task task : tasks) {
-            if (task.getProcessStatus().equals("todo")) {
-                tasksToDo.add(task);
-            }
-            if (task.getProcessStatus().equals("done")) {
-                tasksDone.add(task);
-            }
-            if (task.getProcessStatus().equals("doing")) {
-                tasksDoing.add(task);
-            } else {
-                tasksArchive.add(task);
-            }
-        }
+        List<TaskDTO> tasksDone = kanbanTasks.getTasks(TaskStatus.DONE);
+        model.addAttribute("tasksDONE", tasksDone);
 
-//
-        model.addAttribute("tasksTODO", tasksBystatus.get("todo"));
-        model.addAttribute("tasksDOING", tasksBystatus.get("doing"));
-        model.addAttribute("tasksDONE", tasksBystatus.get("done"));
-        model.addAttribute("tasksARCHIVE", tasksBystatus.get("archive"));
         return "kanban-table";
     }
+
+    @GetMapping("/addForm")
+    public String showFormForAdd(Model model){
+
+        TaskDTO taskDTO = new TaskDTO();
+
+        model.addAttribute("task", taskDTO);
+
+        return "task-form";
+    }
+
+    @PostMapping("/save")
+    public String saveTask(@ModelAttribute("task") TaskDTO theTask){
+
+        taskService.saveTask(theTask);
+
+        return "redirect:/table";
+    }
+
+
+
+
 }
 

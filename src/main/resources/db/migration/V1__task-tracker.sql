@@ -3,7 +3,7 @@ CREATE TABLE `task` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `process_status` varchar(45) NOT NULL DEFAULT 'todo',
   `task_name` varchar(45) DEFAULT NULL,
-  `description` text,
+  `description` varchar(4000),
   PRIMARY KEY (`id`)
 );
 

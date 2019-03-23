@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+  <meta charset="UTF-8"/>
+</head>
+<body>
+
+
+<form action="#" th:action="@{/save}" th:object="${task}" method="post">
+    Task tile: <input type="text" th:field="*{taskName}"/>
+    Description: <textarea type="text" th:field="*{description}" rows="6" cols="20"/>
+
+    Status: <select th:field="*{processStatus}">
+        <option th:value="TODO" th:text="TODO"></option>
+        <option th:value="IN_PROGRESS" th:text="IN_PROGRESS"></option>
+        <option th:value="DONE" th:text="DONE"></option>
+    </select>
+    <button type="submit">save</button>
+</form>
+</body>
+</html>
