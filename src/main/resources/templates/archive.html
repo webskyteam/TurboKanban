@@ -33,12 +33,13 @@
                 <div class="linksWrapper">
                 <div class="arrowLeft">
                     <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-left"></a>
+               </div>
                 <div class="updateDelete">
 
-              <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+              <a th:href="@{/deleteFromArchive(id=${task.Id})}">Delete</a>
               </div>
-              <div class="arrowRight"></div>
-              </div>
+                <div class="arrowRight"></div>
+
               </div>
               <p></p>
             </div>
