@@ -1,19 +1,24 @@
 package io.webskyteam.turbokanban.entity;
 
 
+import io.webskyteam.turbokanban.dto.TaskStatus;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "task")
-public class Task {
+public class TaskEntity {
 
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "process_status", length = 20)
-    private String processStatus;
+    @Enumerated(EnumType.STRING)
+    private TaskStatus processStatus;
 
     @Column(name = "task_name", length = 40)
     private String taskName;
@@ -21,24 +26,24 @@ public class Task {
     @Column(name = "description", length = 4000)
     private String description;
 
-    public Task() {
-    }
-
-    public Task(String processStatus, String taskName, String description) {
+    public TaskEntity(Integer id, TaskStatus processStatus, String taskName, String description) {
+        this.id = id;
         this.processStatus = processStatus;
         this.taskName = taskName;
         this.description = description;
     }
 
-    public Long getId() {
+    public TaskEntity(){}
+
+    public Integer getId() {
         return id;
     }
 
-    public String getProcessStatus() {
+    public TaskStatus getProcessStatus() {
         return processStatus;
     }
 
-    public void setProcessStatus(String processStatus) {
+    public void setProcessStatus(TaskStatus processStatus) {
         this.processStatus = processStatus;
     }
 
