@@ -2,29 +2,76 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+<meta charset="UTF-8"/>
+   <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" th:href="@{/css/cssKanbanBoard.css}"/>
+  <link rel="script" th:src="@{/js/cssKanbanBoard.js}"/>
 
+  <script type="text/javascript" th:src="@{/js/cssKanbanBoard.js}"/>
 
-  <meta charset="UTF-8"/>
 </head>
 <body>
+<div class="container-fluid">
+
+<div id="sortableKanbanBoards">
+
+         <div><span>Kanban table</span></div>
 
 
-<form action="#" th:action="@{/save}" th:object="${task}" method="post">
-    <input type="hidden" th:field="*{id}"/>
-    <div>
-    Task tile: <input type="text" th:field="*{taskName}"/>
-    <i th:if="${#fields.hasErrors('taskName')}" th:errors="*{taskName}">Name Error</i>
-    </div>
-    <div>Description: <textarea type="text" th:field="*{description}" rows="6" cols="20"/></div>
-    <div>Status: <select th:field="*{processStatus}">
-        <option th:value="TODO" th:text="TODO"></option>
-        <option th:value="IN_PROGRESS" th:text="IN_PROGRESS"></option>
-        <option th:value="DONE" th:text="DONE"></option>
-    </select></div>
-    <button type="submit">save</button>
-</form>
-    <p>
-		<a href="/table">Back to List</a>
-	</p>
+	<div class="panel panel-primary kanban-col">
+        <div class="panel-heading">
+            Add task
+            <i class="fa fa-2x fa-plus-circle pull-right"></i>
+             </div>
+                <div class="panel-body">
+                      <div id="TODO" class="kanban-centered">
+                        <form action="#" th:action="@{/save}" th:object="${task}" method="post">
+                            <input type="hidden" th:field="*{id}"/>
+
+                                <article class="kanban-entry grab" id="item1" draggable="true">
+
+                                <div class="kanban-entry-inner">
+                                <div class="kanban-label">
+                                Task title:
+
+                                <input type="text" th:field="*{taskName}" class="form-control"/>
+                                <i th:if="${#fields.hasErrors('taskName')}" th:errors="*{taskName}" id="errors">Name Error</i>
+
+                                <div class="spacingAddForm">
+                            Description: <textarea type="text" th:field="*{description}" rows="6" cols="20"
+                                class="form-control"/>
+                                </div>
+                                <div class="spacingAddForm">
+                            Status: <select th:field="*{processStatus}" class="form-control">
+                                <option th:value="TODO" th:text="TODO"></option>
+                                <option th:value="IN_PROGRESS" th:text="IN_PROGRESS"></option>
+                                <option th:value="DONE" th:text="DONE"></option>
+                            </select>
+                                </div>
+                                <div class="spacingAddForm">
+                        <button type="submit" class="btn btn-primary btn-md">save</button>
+                            </div>
+                        </div>
+                        </div>
+                        </article>
+                        </form>
+                    </div>
+                    </div>
+
+
+
+     </div>
+        <div id="sortableKanbanBoards">
+
+             <a href="/table">Back to List</a>
+        </div>
+
+     </div>
+
+     </div>
+
+
 </body>
 </html>

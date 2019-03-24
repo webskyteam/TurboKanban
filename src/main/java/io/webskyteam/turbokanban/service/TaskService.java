@@ -1,4 +1,5 @@
 package io.webskyteam.turbokanban.service;
+
 import io.webskyteam.turbokanban.EntityDTOConversion.TaskConverter;
 import io.webskyteam.turbokanban.dto.KanbanBoard;
 import io.webskyteam.turbokanban.dto.TaskDTO;
@@ -36,7 +37,7 @@ public class TaskService {
         taskRepository.save(taskEntity);
     }
 
-    public TaskDTO findTaskById (Integer theId){
+    public TaskDTO findTaskById(Integer theId) {
         TaskEntity taskEntity = taskRepository.findOne(theId);
         TaskDTO taskDTO = TaskConverter.toDto(taskEntity);
 

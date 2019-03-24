@@ -361,10 +361,30 @@ body {
 .updateDelete {
     text-align: center;
     font-size: 9pt;
-    padding-top: 7px;
 }
+.linksWrapper{text-align: center; display: flex; justify-content: center; padding-top: 7px;}
 
+.arrowRight { margin-left: auto; margin-right: 0;}
+.arrowLeft {  margin-left: 0; margin-right: auto;}
 span {
     font-size: 18pt;
     font-family: Roboto,sans-serif;
+    color: #428bca;
+}
+
+.container-fluid{
+    display: flex;
+    justify-content: center;
+}
+
+#buttonlayout {
+    padding-bottom: 8px;
+}
+
+.spacingAddForm {
+    padding-top: 7px;
+}
+
+#errors {
+    color: #cc2424;
 }

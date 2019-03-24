@@ -15,9 +15,9 @@
         <div id="sortableKanbanBoards" class="row">
         <span>Kanban table</span>
 
-        <div>
-            <a th:href="@{/addForm}"> Add Task </a>
-            <a th:href="@{/archive}"> Archive </a>
+        <div id="buttonlayout">
+            <a th:href="@{/addForm}" class="btn btn-primary btn-xs"> Add Task </a>
+            <a th:href="@{/archive}" class="btn btn-primary btn-xs"> Archive </a>
         </div>
             <div class="panel panel-primary kanban-col">
                 <div class="panel-heading">
@@ -34,12 +34,16 @@
                 <!--                      <div th:text="${task.getProcessStatus()}">Status zadania</div> -->
                                           <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
                                           <p th:text="${task.getDescription()}">Opis zadania</p>
-                                          <div class="updateDelete">
-                                          <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
-                                          |
-                                          <a th:href="@{/delete(id=${task.Id})}">Delete</a>
-                                          <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-right">
-                                          </a>
+                                          <div class="linksWrapper">
+                                                <div class="arrowLeft"></div>
+                                              <div class="updateDelete">
+                                                  <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
+                                                  |
+                                                  <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+                                              </div>
+                                              <div class="arrowRight">
+                                              <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-right"></a>
+                                                </div>
                                           </div>
                                           <p></p>
                                           </div>
@@ -68,18 +72,20 @@
                       <!--<div th:text="${task.getProcessStatus()}">Status zadania</div>-->
                       <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
                       <p th:text="${task.getDescription()}">Opis zadania</p>
+                       <div class="linksWrapper">
+                         <div class="arrowLeft">
+                         <a th:href="@{/moveToTodo(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-left"></a>
+                         </div>
                         <div class="updateDelete">
-                        <a th:href="@{/moveToTodo(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-left"></a>
+
                       <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
                       |
                       <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+                      </div>
+                      <div class="arrowRight">
                       <a th:href="@{/moveToDone(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-right"></a>
                       </div>
-
-
-
-
-
+                      </div>
 
                       <p></p>
                           </div>
@@ -106,17 +112,21 @@
                       <!--<div th:text="${task.getProcessStatus()}">Status zadania</div>-->
                       <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
                       <p th:text="${task.getDescription()}">Opis zadania</p>
-                      <div class="updateDelete">
-                      <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-left"></a>
-                      <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
-                      |
-                      <a th:href="@{/delete(id=${task.Id})}">Delete</a>
-                      <a th:href="@{/moveToArchive(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-right"></a>
+                      <div class="linksWrapper">
+                           <div class="arrowLeft">
+                           <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-left"></a>
+                           </div>
+                          <div class="updateDelete">
+
+                          <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
+                          |
+                          <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+                          </div>
+                          <div class="arrowRight">
+                            <a th:href="@{/moveToArchive(id=${task.Id})}" class="glyphicon glyphicon-folder-open"></a>
+                          </div>
+
                       </div>
-
-
-
-
 
                       <p></p>
 

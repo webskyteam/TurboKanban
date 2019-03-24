@@ -69,6 +69,12 @@ public class TaskController {
         return "redirect:/table";
     }
 
+    @GetMapping("deleteFromArchive")
+    public String deleteTaskFromArchive(@RequestParam("id") Integer id){
+        taskService.deleteTask(id);
+        return "redirect:/archive";
+    }
+
     @RequestMapping("/archive")
     public String listArchiveTasks(Model model) {
         KanbanBoard kanbanTasks = taskService.getTasks();
