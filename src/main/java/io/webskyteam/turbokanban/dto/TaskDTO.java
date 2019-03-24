@@ -1,49 +1,24 @@
 package io.webskyteam.turbokanban.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class TaskDTO {
 
     private Integer id;
 
     private TaskStatus processStatus;
 
+    @NotNull
+    @Size(min=2, max=30, message = "Please, write min 2 and max 30 signs.")
     private String taskName;
 
     private String description;
-
-    public TaskDTO(TaskStatus processStatus, String taskName, String description) {
-        this.processStatus = processStatus;
-        this.taskName = taskName;
-        this.description = description;
-    }
-
-    public TaskDTO(){}
-
-    public Integer getId() {
-        return id;
-    }
-
-    public TaskStatus getProcessStatus() {
-        return processStatus;
-    }
-
-    public void setProcessStatus(TaskStatus processStatus) {
-        this.processStatus = processStatus;
-    }
-
-    public String getTaskName() {
-        return taskName;
-    }
-
-    public void setTaskName(String taskName) {
-        this.taskName = taskName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
 }

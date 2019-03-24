@@ -10,15 +10,21 @@
 
 
 <form action="#" th:action="@{/save}" th:object="${task}" method="post">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
     Task tile: <input type="text" th:field="*{taskName}"/>
-    Description: <textarea type="text" th:field="*{description}" rows="6" cols="20"/>
-
-    Status: <select th:field="*{processStatus}">
+    <i th:if="${#fields.hasErrors('taskName')}" th:errors="*{taskName}">Name Error</i>
+    </div>
+    <div>Description: <textarea type="text" th:field="*{description}" rows="6" cols="20"/></div>
+    <div>Status: <select th:field="*{processStatus}">
         <option th:value="TODO" th:text="TODO"></option>
         <option th:value="IN_PROGRESS" th:text="IN_PROGRESS"></option>
         <option th:value="DONE" th:text="DONE"></option>
-    </select>
+    </select></div>
     <button type="submit">save</button>
 </form>
+    <p>
+		<a href="/table">Back to List</a>
+	</p>
 </body>
 </html>

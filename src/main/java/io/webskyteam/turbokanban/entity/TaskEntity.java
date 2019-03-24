@@ -4,6 +4,8 @@ package io.webskyteam.turbokanban.entity;
 import io.webskyteam.turbokanban.dto.TaskStatus;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "task")
@@ -24,7 +26,8 @@ public class TaskEntity {
     @Column(name = "description", length = 4000)
     private String description;
 
-    public TaskEntity(TaskStatus processStatus, String taskName, String description) {
+    public TaskEntity(Integer id, TaskStatus processStatus, String taskName, String description) {
+        this.id = id;
         this.processStatus = processStatus;
         this.taskName = taskName;
         this.description = description;

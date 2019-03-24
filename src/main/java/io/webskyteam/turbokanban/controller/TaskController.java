@@ -7,11 +7,10 @@ import io.webskyteam.turbokanban.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -26,7 +25,6 @@ public class TaskController {
 
     @RequestMapping("/table")
     public String listTasks(Model model) {
-
         KanbanBoard kanbanTasks = taskService.getTasks();
 
         List<TaskDTO> tasksTodo = kanbanTasks.getTasks(TaskStatus.TODO);
@@ -43,23 +41,73 @@ public class TaskController {
 
     @GetMapping("/addForm")
     public String showFormForAdd(Model model){
-
-        TaskDTO taskDTO = new TaskDTO();
-
-        model.addAttribute("task", taskDTO);
-
+        model.addAttribute("task", new TaskDTO());
         return "task-form";
     }
 
     @PostMapping("/save")
-    public String saveTask(@ModelAttribute("task") TaskDTO theTask){
+    public String saveTask(@Valid @ModelAttribute("task") TaskDTO theTask,
+                           BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "task-form";
+        } else {
+            taskService.save(theTask);
+            return "redirect:/table";
+        }
+    }
 
-        taskService.saveTask(theTask);
+    @GetMapping("/showFormForUpdate")
+    public String updateTask(@RequestParam("id") Integer id, Model theModel){
+        TaskDTO taskDTO = taskService.findTaskById(id);
+        theModel.addAttribute("task", taskDTO);
+        return "task-form";
+    }
+
+    @GetMapping("delete")
+    public String deleteTask(@RequestParam("id") Integer id){
+        taskService.deleteTask(id);
+        return "redirect:/table";
+    }
+
+    @RequestMapping("/archive")
+    public String listArchiveTasks(Model model) {
+        KanbanBoard kanbanTasks = taskService.getTasks();
+        List<TaskDTO> tasksArchive = kanbanTasks.getTasks(TaskStatus.ARCHIVE);
+        model.addAttribute("tasksArchive", tasksArchive);
+        return "archive";
+    }
+
+    @GetMapping("/moveToInProgress")
+    public String moveTaskToDoing(@RequestParam("id") Integer theId) {
+
+        taskService.moveToInProgress(theId);
 
         return "redirect:/table";
     }
 
+    @GetMapping("/moveToTodo")
+    public String moveTaskToTodo(@RequestParam("id") Integer theId) {
 
+        taskService.moveTaskToTodo(theId);
+
+        return "redirect:/table";
+    }
+
+    @GetMapping("/moveToDone")
+    public String moveTaskToDone(@RequestParam("id") Integer theId) {
+
+        taskService.moveTaskToDone(theId);
+
+        return "redirect:/table";
+    }
+
+    @GetMapping("/moveToArchive")
+    public String moveTaskToArchive(@RequestParam("id") Integer theId) {
+
+        taskService.moveTaskToArchive(theId);
+
+        return "redirect:/table";
+    }
 
 
 }

@@ -11,8 +11,8 @@ public class KanbanBoardTest {
     @Test
     public void testCreationOfKanbanBoard() {
         List<TaskDTO> dtos = new ArrayList<>();
-        dtos.add(new TaskDTO(TaskStatus.TODO, "zadanie 1", "opis zadania 1"));
-        dtos.add(new TaskDTO(TaskStatus.TODO, "zadanie 2", "opis zadania 2"));
+        dtos.add(new TaskDTO(1, TaskStatus.TODO, "zadanie 1", "opis zadania 1"));
+        dtos.add(new TaskDTO(2, TaskStatus.TODO, "zadanie 2", "opis zadania 2"));
 
         KanbanBoard kanbanBoard = new KanbanBoard(dtos);
 

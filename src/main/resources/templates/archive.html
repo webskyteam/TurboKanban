@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+
+
+  <meta charset="UTF-8"/>
+</head>
+<body>
+
+<table border="1">
+    <tr>
+        <th>Archive</th>
+    </tr>
+    <tr>
+        <td>
+            <div th:each="task : ${tasksArchive}">
+              <div th:text="${task.getProcessStatus()}">Status zadania</div>
+              <div th:text="${task.getTaskName()}">Nazwa zadania</div>
+              <div th:text="${task.getDescription()}">Opis zadania</div>
+
+              <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
+              |
+              <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+              <p></p>
+            </div>
+        </td>
+    </tr>
+</table>
+
+    <p>
+		<a href="/table">Back to List</a>
+	</p>
+</body>
+</html>
