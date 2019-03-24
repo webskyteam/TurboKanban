@@ -2,34 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-
+ <meta charset="UTF-8"/>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"/>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" th:href="@{/css/cssKanbanBoard.css}"/>
+  <link rel="script" th:src="@{/js/cssKanbanBoard.js}"/>
+  <script type="text/javascript" th:src="@{/js/cssKanbanBoard.js}"/>
 
   <meta charset="UTF-8"/>
 </head>
 <body>
+     <div class="container-fluid">
+            <div id="sortableKanbanBoards">
+                 <div><span>Kanban table</span></div>
+                 <div class="panel panel-primary kanban-col">
+                    <div class="panel-heading">
+                      Archive
+                    <i class="fa fa-2x fa-plus-circle pull-right"></i>
+                    </div>
+                    <div class="panel-body">
+                    <div id="TODO" class="kanban-centered">
+                        <div th:each="task : ${tasksArchive}">
+                        <article class="kanban-entry grab" id="item1" draggable="true">
+                        <div class="kanban-entry-inner">
+                         <div class="kanban-label">
+ <!--             <div th:text="${task.getProcessStatus()}">Status zadania</div> -->
+              <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
+              <p th:text="${task.getDescription()}">Opis zadania</p>
+                <div class="linksWrapper">
+                <div class="arrowLeft">
+                    <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-left"></a>
+                <div class="updateDelete">
 
-<table border="1">
-    <tr>
-        <th>Archive</th>
-    </tr>
-    <tr>
-        <td>
-            <div th:each="task : ${tasksArchive}">
-              <div th:text="${task.getProcessStatus()}">Status zadania</div>
-              <div th:text="${task.getTaskName()}">Nazwa zadania</div>
-              <div th:text="${task.getDescription()}">Opis zadania</div>
-
-              <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
-              |
               <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+              </div>
+              <div class="arrowRight"></div>
+              </div>
+              </div>
               <p></p>
             </div>
-        </td>
-    </tr>
-</table>
+                                                    </div>
 
-    <p>
-		<a href="/table">Back to List</a>
-	</p>
+                                                </article>
+                                                </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+
+            <div id="sortableKanbanBoards">
+
+                 <a href="/table">Back to List</a>
+            </div>
+
+	</div>
+	</div>
 </body>
 </html>
