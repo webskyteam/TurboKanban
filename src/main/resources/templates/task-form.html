@@ -7,9 +7,7 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link rel="stylesheet" th:href="@{/css/cssKanbanBoard.css}"/>
-  <link rel="script" th:src="@{/js/cssKanbanBoard.js}"/>
 
-  <script type="text/javascript" th:src="@{/js/cssKanbanBoard.js}"/>
 
 </head>
 <body>
@@ -30,7 +28,7 @@
                         <form action="#" th:action="@{/save}" th:object="${task}" method="post">
                             <input type="hidden" th:field="*{id}"/>
 
-                                <article class="kanban-entry grab" id="item1" draggable="true">
+                                <article class="kanban-entry" id="item1">
 
                                 <div class="kanban-entry-inner">
                                 <div class="kanban-label">
