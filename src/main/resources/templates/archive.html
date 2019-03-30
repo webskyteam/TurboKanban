@@ -7,8 +7,8 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
   <link rel="stylesheet" th:href="@{/css/cssKanbanBoard.css}"/>
-  <link rel="script" th:src="@{/js/cssKanbanBoard.js}"/>
-  <script type="text/javascript" th:src="@{/js/cssKanbanBoard.js}"/>
+
+
 
   <meta charset="UTF-8"/>
 </head>
@@ -24,7 +24,7 @@
                     <div class="panel-body">
                     <div id="TODO" class="kanban-centered">
                         <div th:each="task : ${tasksArchive}">
-                        <article class="kanban-entry grab" id="item1" draggable="true">
+                        <article class="kanban-entry" id="item1">
                         <div class="kanban-entry-inner">
                          <div class="kanban-label">
  <!--             <div th:text="${task.getProcessStatus()}">Status zadania</div> -->
