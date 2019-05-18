@@ -3,13 +3,11 @@ package io.webskyteam.turbokanban.service;
 import io.webskyteam.turbokanban.EntityDTOConversion.TaskConverter;
 import io.webskyteam.turbokanban.dto.KanbanBoard;
 import io.webskyteam.turbokanban.dto.TaskDTO;
-import io.webskyteam.turbokanban.dto.TaskStatus;
 import io.webskyteam.turbokanban.entity.TaskEntity;
 import io.webskyteam.turbokanban.repository.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -51,25 +49,25 @@ public class TaskService {
 
     public void moveToInProgress(Integer theId) {
         TaskDTO taskDtoById = findTaskById(theId);
-        taskDtoById.setProcessStatus(TaskStatus.IN_PROGRESS);
+        taskDtoById.setProcessStatus("IN_PROGRESS");
         save(taskDtoById);
     }
 
     public void moveTaskToTodo(Integer theId) {
         TaskDTO taskDtoById = findTaskById(theId);
-        taskDtoById.setProcessStatus(TaskStatus.TODO);
+        taskDtoById.setProcessStatus("TODO");
         save(taskDtoById);
     }
 
     public void moveTaskToDone(Integer theId) {
         TaskDTO taskDtoById = findTaskById(theId);
-        taskDtoById.setProcessStatus(TaskStatus.DONE);
+        taskDtoById.setProcessStatus("DONE");
         save(taskDtoById);
     }
 
     public void moveTaskToArchive(Integer theId) {
         TaskDTO taskDtoById = findTaskById(theId);
-        taskDtoById.setProcessStatus(TaskStatus.ARCHIVE);
+        taskDtoById.setProcessStatus("ARCHIVE");
         save(taskDtoById);
     }
 }
