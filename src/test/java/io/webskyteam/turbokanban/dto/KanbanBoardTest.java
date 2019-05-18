@@ -11,11 +11,11 @@ public class KanbanBoardTest {
     @Test
     public void testCreationOfKanbanBoard() {
         List<TaskDTO> dtos = new ArrayList<>();
-        dtos.add(new TaskDTO(1, TaskStatus.TODO, "zadanie 1", "opis zadania 1"));
-        dtos.add(new TaskDTO(2, TaskStatus.TODO, "zadanie 2", "opis zadania 2"));
+        dtos.add(new TaskDTO(1, "TODO", "zadanie 1", "opis zadania 1"));
+        dtos.add(new TaskDTO(2, "TODO", "zadanie 2", "opis zadania 2"));
 
         KanbanBoard kanbanBoard = new KanbanBoard(dtos);
 
-        Assert.assertEquals(2, kanbanBoard.getTasks(TaskStatus.TODO).size());
+        Assert.assertEquals(2, kanbanBoard.getTasks("TODO").size());
     }
 }

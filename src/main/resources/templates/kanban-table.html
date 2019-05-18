@@ -25,31 +25,31 @@
                 </div>
                 <div class="panel-body">
                     <div id="TODO" class="kanban-centered">
-                                    <div th:each="task : ${tasksTODO}">
-                                        <article class="kanban-entry" id="item1">
+                        <div th:each="task : ${tasksTODO}">
+                            <article class="kanban-entry" id="item1">
 
-                                            <div class="kanban-entry-inner">
-                                            <div class="kanban-label">
-                <!--                      <div th:text="${task.getProcessStatus()}">Status zadania</div> -->
-                                          <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
-                                          <p th:text="${task.getDescription()}">Opis zadania</p>
-                                          <div class="linksWrapper">
-                                                <div class="arrowLeft"></div>
-                                              <div class="updateDelete">
-                                                  <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
-                                                  |
-                                                  <a th:href="@{/delete(id=${task.Id})}">Delete</a>
-                                              </div>
-                                              <div class="arrowRight">
-                                              <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-right"></a>
-                                                </div>
-                                          </div>
-                                          <p></p>
-                                          </div>
-                                        </div>
-
-                                    </article>
+                                <div class="kanban-entry-inner">
+                                <div class="kanban-label">
+    <!--                      <div th:text="${task.getProcessStatus()}">Status zadania</div> -->
+                              <h5 th:text="${task.getTaskName()}">Nazwa zadania</h5>
+                              <p th:text="${task.getDescription()}">Opis zadania</p>
+                              <div class="linksWrapper">
+                                    <div class="arrowLeft"></div>
+                                  <div class="updateDelete">
+                                      <a th:href="@{/showFormForUpdate(id=${task.Id})}">Update</a>
+                                      |
+                                      <a th:href="@{/delete(id=${task.Id})}">Delete</a>
+                                  </div>
+                                  <div class="arrowRight">
+                                  <a th:href="@{/moveToInProgress(id=${task.Id})}" class="glyphicon glyphicon-circle-arrow-right"></a>
                                     </div>
+                              </div>
+                              <p></p>
+                              </div>
+                            </div>
+
+                        </article>
+                        </div>
 
                     </div>
                 </div>

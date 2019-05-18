@@ -2,7 +2,6 @@ package io.webskyteam.turbokanban.controller;
 
 import io.webskyteam.turbokanban.dto.KanbanBoard;
 import io.webskyteam.turbokanban.dto.TaskDTO;
-import io.webskyteam.turbokanban.dto.TaskStatus;
 import io.webskyteam.turbokanban.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,13 +26,14 @@ public class TaskController {
     public String listTasks(Model model) {
         KanbanBoard kanbanTasks = taskService.getTasks();
 
-        List<TaskDTO> tasksTodo = kanbanTasks.getTasks(TaskStatus.TODO);
+
+        List<TaskDTO> tasksTodo = kanbanTasks.getTasks("TODO");
         model.addAttribute("tasksTODO", tasksTodo);
 
-        List<TaskDTO> tasksInProgress = kanbanTasks.getTasks(TaskStatus.IN_PROGRESS);
+        List<TaskDTO> tasksInProgress = kanbanTasks.getTasks("IN_PROGRESS");
         model.addAttribute("tasksDOING", tasksInProgress);
 
-        List<TaskDTO> tasksDone = kanbanTasks.getTasks(TaskStatus.DONE);
+        List<TaskDTO> tasksDone = kanbanTasks.getTasks("DONE");
         model.addAttribute("tasksDONE", tasksDone);
 
         return "kanban-table";
@@ -78,7 +78,7 @@ public class TaskController {
     @RequestMapping("/archive")
     public String listArchiveTasks(Model model) {
         KanbanBoard kanbanTasks = taskService.getTasks();
-        List<TaskDTO> tasksArchive = kanbanTasks.getTasks(TaskStatus.ARCHIVE);
+        List<TaskDTO> tasksArchive = kanbanTasks.getTasks("ARCHIVE");
         model.addAttribute("tasksArchive", tasksArchive);
         return "archive";
     }

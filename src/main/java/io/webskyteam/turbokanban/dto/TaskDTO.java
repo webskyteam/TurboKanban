@@ -14,7 +14,7 @@ public class TaskDTO {
 
     private Integer id;
 
-    private TaskStatus processStatus;
+    private String processStatus;
 
     @NotNull
     @Size(min=2, max=30, message = "Please, write min 2 and max 30 signs.")

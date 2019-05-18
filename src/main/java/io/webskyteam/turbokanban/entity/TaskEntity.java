@@ -1,11 +1,7 @@
 package io.webskyteam.turbokanban.entity;
 
 
-import io.webskyteam.turbokanban.dto.TaskStatus;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "task")
@@ -17,8 +13,8 @@ public class TaskEntity {
     private Integer id;
 
     @Column(name = "process_status", length = 20)
-    @Enumerated(EnumType.STRING)
-    private TaskStatus processStatus;
+//    @Enumerated(EnumType.STRING)
+    private String processStatus;
 
     @Column(name = "task_name", length = 40)
     private String taskName;
@@ -26,7 +22,7 @@ public class TaskEntity {
     @Column(name = "description", length = 4000)
     private String description;
 
-    public TaskEntity(Integer id, TaskStatus processStatus, String taskName, String description) {
+    public TaskEntity(Integer id, String processStatus, String taskName, String description) {
         this.id = id;
         this.processStatus = processStatus;
         this.taskName = taskName;
@@ -39,11 +35,11 @@ public class TaskEntity {
         return id;
     }
 
-    public TaskStatus getProcessStatus() {
+    public String getProcessStatus() {
         return processStatus;
     }
 
-    public void setProcessStatus(TaskStatus processStatus) {
+    public void setProcessStatus(String processStatus) {
         this.processStatus = processStatus;
     }
 
